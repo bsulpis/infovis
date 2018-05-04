@@ -9,7 +9,7 @@
     <script src="https://d3js.org/d3.v3.min.js"></script>
     <div id="viz"></div>
 
-    <script 
+    <script>
     
     var data = 
 [{"ID":1,"X":140,"Y":119},
@@ -28,13 +28,13 @@
 {"ID":14,"X":40,"Y":125},
 {"ID":15,"X":110,"Y":121}];
 
-var w = 200, h = 200;
+var w = 400, h = 400;
 
 var svg = d3.select("div#viz").append("svg")
-  .attr("width",200).attr("height",200);
+  .attr("width",400).attr("height",400);
 
 svg.append("rect").attr("x",1)
-  .attr("y",1).attr("width",199).attr("height",199)
+  .attr("y",1).attr("width",399).attr("height",399)
   .attr("fill","none")
   .attr("stroke-width",1)
   .attr("stroke","black");
@@ -51,33 +51,23 @@ svg.append("image")
 svg.selectAll(".point")
   .data(data).enter().append("circle")
   .attr("class","point")
-  .attr("cx", function(d) {return d.X;})
-  .attr("cy", function(d) {return 200-d.Y;})
+  .attr("cx", function(d) {return d.X*2;})
+  .attr("cy", function(d) {return 400-d.Y*2;})
   .attr("r",5)
-  //.attr("fill","blue")
     .append("title")
     .text(function(d) {return "el ID "+ d.ID + 
-    " esta en la posicion: " + d.X ; } );
-
-/*   --> con esto le pongo los textos básicos
-svg.selectAll(".textos")
-  .data(data).enter().append("text")
-  .attr("x",function(d) {return d.X;})
-  .attr("y",function(d) {return d.Y;})
-  //.
-  .text(function(d) {return d.ID;});
-*/
+    " esta en la posicion: " + d.X*2 ; } );
 
 svg.selectAll(".textos")
   .data(data).enter().append("text")
-  .attr("x",100)
-  .attr("y",100)
+  .attr("x",200)
+  .attr("y",200)
   .attr("fill","red")
   .text(function(d) {return d.ID;})
-  .transition().duration(2000).ease("bounce") //rebota
+  .transition().duration(2000).ease("bounce") 
   .attr("fill","black")
-  .attr("x", function(d) {return 5+d.X;})
-  .attr("y", function(d) {return 200-d.Y;});
+  .attr("x", function(d) {return 5+d.X*2;})
+  .attr("y", function(d) {return 400-d.Y*2;});
     
     
     
